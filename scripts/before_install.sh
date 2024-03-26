@@ -1,5 +1,15 @@
 #!/bin/bash
-# This is a simple before install script for a Node.js application
+set -e
+
 echo "Running before install script"
 echo "Updating package list"
-sudo apt-get update
+
+# Determine the package manager based on the distribution (simplified example)
+if [ -f /etc/debian_version ]; then
+    apt-get update
+elif [ -f /etc/redhat-release ]; then
+    yum update -y
+else
+    echo "Unsupported distribution"
+    exit 1
+fi
