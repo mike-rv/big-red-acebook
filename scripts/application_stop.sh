@@ -1,5 +1,16 @@
 #!/bin/bash
-# This is a simple application stop script for a Node.js application
-echo "Running application stop script"
-echo "Stopping application"
-pkill -f "node /var/www/myapp/app.js"
+# Stop the Node.js application by killing its process
+
+echo "Stopping application..."
+
+PID_FILE="/var/run/myapp.pid"
+
+if [ -f "$PID_FILE" ]; then
+    PID=$(cat "$PID_FILE")
+    echo "Killing process $PID"
+    kill "$PID" || true
+    rm "$PID_FILE"
+    echo "Application stopped."
+else
+    echo "PID file not found. Application might not be running."
+fi
