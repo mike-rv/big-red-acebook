@@ -30,7 +30,7 @@ jobs:
 
       - name: Trigger CodeDeploy deployment
         run: |
-          aws deploy create-deployment --application-name your-application-name --deployment-group-name your-deployment-group-name --s3-location bucket=your-s3-bucket-name,key=application.zip,bundleType=zip
+          aws deploy create-deployment --application-name A-Big-Red-CodeDeploy --deployment-group-name A-Big-Red-Deployment-Group --s3-location bucket=a-big-red-bucket,key=application.zip,bundleType=zip
 
   deploy-local:
     runs-on: ubuntu-latest
@@ -43,9 +43,9 @@ jobs:
           source ~/.bash_profile
           nvm install 18
       - name: Clone repository
-        run: git clone https://github.com/your-username/acebook-team-name.git
+        run: git clone https://github.com/mike-rv/big-red-acebook.git
       - name: Change directory
-        run: cd acebook-team-name
+        run: cd big-red-acebook
       - name: Install Node.js dependencies
         run: npm install
       - name: Install MongoDB
