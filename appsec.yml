@@ -1,18 +1,29 @@
 version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html/
+# This application depends on Node.js 14.x
+platform:
+  operatingSystemFamily: LINUX
+  # You can replace 14.x with a specific Node.js version if needed
+  #  e.g. nodejs:16
+  # See AWS documentation for available options: https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-version.html
+  # You can also specify a custom AMI if needed
+  # See AWS documentation for details: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html
+# Code to deploy is located in the root of the application source directory
+source:
+  path: .
+# Name of the application (replace with your application name)
+name: A-Big-Red-CodeDeploy
+# Hooks specify actions to perform before or after deployment
 hooks:
+  # This example runs a shell script (install.sh) before deployment
+  # You can adjust the script name and commands as needed
   BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 300
-      runas: codedeployuser
+    location: .  # Script location relative to source path
+    runas: user  # Optional, run script as a specific user
+    paths:
+      - install.sh  # Script to run
+  # This example runs a shell script (post_deploy.sh) after deployment is successful
   AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
-      runas: codedeployuser
-  ApplicationStart:
-    - location: scripts/start_application.sh
-      timeout: 300
-      runas: codedeployuser
+    location: .
+    runas: user
+    paths:
+      - post_deploy.sh
