@@ -6,3 +6,5 @@ cd /var/www/myapp
 
 # Use PM2 to start the application
 pm2 start ./bin/www --name myapp
+
+
