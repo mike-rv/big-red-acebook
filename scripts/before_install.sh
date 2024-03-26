@@ -14,7 +14,20 @@ sudo yum install -y nodejs
 echo "Installing build tools"
 sudo yum groupinstall -y 'Development Tools'
 
-# Ensure MongoDB is started and enabled on boot
+# Add MongoDB repository
+echo "Adding MongoDB repository"
+echo '[mongodb-org-4.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/4.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc' | sudo tee /etc/yum.repos.d/mongodb-org-4.4.repo
+
+# Install MongoDB
+echo "Installing MongoDB"
+sudo yum install -y mongodb-org
+
+# Start and enable MongoDB service to start on boot
 echo "Starting and enabling MongoDB service"
 sudo systemctl start mongod
 sudo systemctl enable mongod
