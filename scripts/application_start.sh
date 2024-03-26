@@ -3,4 +3,6 @@
 echo "Running application start script"
 echo "Starting application"
 cd /var/www/myapp
-npm start
+
+# Start the application in the background
+nohup npm start > /dev/null 2>&1 &
