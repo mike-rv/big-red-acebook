@@ -1,15 +1,15 @@
 #!/bin/bash
-set -e
+# This is a before install script for a Node.js application on Amazon Linux 2
 
 echo "Running before install script"
 echo "Updating package list"
+sudo yum update -y
 
-# Determine the package manager based on the distribution (simplified example)
-if [ -f /etc/debian_version ]; then
-    apt-get update
-elif [ -f /etc/redhat-release ]; then
-    yum update -y
-else
-    echo "Unsupported distribution"
-    exit 1
-fi
+# Install Node.js and npm if not already installed
+echo "Installing Node.js"
+curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+sudo yum install -y nodejs
+
+# Optionally, install build tools to compile and install native addons from npm
+sudo yum groupinstall -y 'Development Tools'
+
