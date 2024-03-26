@@ -1,0 +1,69 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+
+      - name: Archive application
+        run: |
+          zip -r application.zip .
+
+      - name: Upload to AWS S3
+        run: |
+          aws s3 cp application.zip s3://a-big-red-bucket/application.zip
+
+      - name: Trigger CodeDeploy deployment
+        run: |
+          aws deploy create-deployment --application-name your-application-name --deployment-group-name your-deployment-group-name --s3-location bucket=your-s3-bucket-name,key=application.zip,bundleType=zip
+
+  deploy-local:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        run: |
+          brew install nvm
+          source ~/.bash_profile
+          nvm install 18
+      - name: Clone repository
+        run: git clone https://github.com/your-username/acebook-team-name.git
+      - name: Change directory
+        run: cd acebook-team-name
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Install MongoDB
+        run: |
+          brew tap mongodb/brew
+          brew install mongodb-community@5.0
+          brew services start mongodb-community@5.0
+      - name: Run ESLint
+        run: npm run lint
+      - name: Run tests
+        run: npm test
+      - name: Start the server
+        run: npm start
+
+
+
+
+
+
+
+
