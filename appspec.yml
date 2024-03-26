@@ -1,7 +1,6 @@
 version: 0.0
 # This application depends on Node.js 14.x
-platform:
-  operatingSystemFamily: LINUX
+os: linux
   # You can replace 14.x with a specific Node.js version if needed
   #  e.g. nodejs:16
   # See AWS documentation for available options: https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-version.html
