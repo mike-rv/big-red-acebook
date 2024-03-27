@@ -4,4 +4,4 @@ echo "Running application start script"
 echo "Restarting application with PM2"
 cd /var/www/myapp
 
-npm start
+pm2 start ./bin/www --name myapp
