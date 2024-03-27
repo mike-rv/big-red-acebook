@@ -5,6 +5,12 @@ echo "Stopping application..."
 
 PID_FILE="/var/run/myapp.pid"
 
+# Create an empty PID file if it doesn't exist
+if [ ! -f "$PID_FILE" ]; then
+    echo "Creating empty PID file"
+    touch "$PID_FILE"
+fi
+
 if [ -f "$PID_FILE" ]; then
     PID=$(cat "$PID_FILE")
     echo "Killing process $PID"

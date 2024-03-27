@@ -3,7 +3,7 @@
 echo "Running after install script"
 echo "Installing Node.js and npm"
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo yum install -y nodejs
 echo "Installing application dependencies"
 cd /var/www/myapp
 npm install

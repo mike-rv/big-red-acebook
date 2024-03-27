@@ -14,6 +14,10 @@ sudo yum install -y nodejs
 echo "Installing build tools"
 sudo yum groupinstall -y 'Development Tools'
 
+# Install npm version 18
+echo "Installing npm version 18"
+sudo npm install -g npm@18
+
 # Add MongoDB repository
 echo "Adding MongoDB repository"
 echo '[mongodb-org-4.4]
