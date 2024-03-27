@@ -5,4 +5,4 @@ echo "Restarting application with PM2"
 cd /var/www/myapp
 
 # Restart the application with PM2
-pm2 start ./bin/www --name myapp
+pm2 start app.js
