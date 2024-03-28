@@ -16,6 +16,4 @@ cd /var/www/myapp
 #     echo 'npm starting'
 #     npm start ./bin/www --name myapp
 # fi
-
-echo 'npm starting'
 pm2 start ./bin/www --name myapp
