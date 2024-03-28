@@ -8,11 +8,14 @@ echo "Restarting application with PM2"
 
 cd /var/www/myapp
 
-# Check if the application is already running
-if pm2 list | grep -q myapp; then
-    echo "Application is already running. Skipping start."
-else
-    # Start the application with PM2 if it's not already running
-    pm2 start ./bin/www --name myapp
-fi
+# # Check if the application is already running
+# if pm2 list | grep -q myapp; then
+#     echo "Application is already running. Skipping start."
+# else
+#     # Start the application with PM2 if it's not already running
+#     echo 'npm starting'
+#     npm start ./bin/www --name myapp
+# fi
 
+echo 'npm starting'
+npm start ./bin/www --name myapp
