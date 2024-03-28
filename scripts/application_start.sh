@@ -18,4 +18,4 @@ cd /var/www/myapp
 # fi
 
 echo 'npm starting'
-npm start ./bin/www --name myapp
+pm2 start ./bin/www --name myapp
